@@ -34,8 +34,7 @@ const ProductStore = create((set) => ({
                 cart: state.cart.filter(item => item.id !== dataId)
             }
         }
-
-        return;
+        return state;
     }),
 
 }));
