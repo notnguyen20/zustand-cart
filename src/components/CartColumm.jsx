@@ -5,9 +5,13 @@ function CartColumm() {
     const cart = ProductStore((state) => state.cart);
     const deleteProduct = ProductStore((state) => state.deleteProduct);
 
+    const increaseQuantity = ProductStore((state) => state.increaseQuantity);
+    const decreaseQuantity = ProductStore((state) => state.decreaseQuantity);
+
     const totalPrice = cart.reduce((total, item) => {
         return total + item.price * item.quantity;
     }, 0);
+
 
     return (
         <div id="cart-col" className="col-card">
@@ -29,8 +33,15 @@ function CartColumm() {
                             <div className="item-info">
                                 <h4>{cartItem.name}</h4>
                                 <p>
-                                    {cartItem.price.toLocaleString()} VNĐ x{" "}
-                                    <strong>{cartItem.quantity}</strong>
+                                    {cartItem.price.toLocaleString()} VNĐ {" "}
+                                    {/* <strong>{cartItem.quantity}</strong> */}
+                                    <span className="quantity-control">
+                                        <button onClick={() => { decreaseQuantity(cartItem.id) }}>-</button>
+
+                                        <span>{cartItem.quantity}</span>
+
+                                        <button onClick={() => { increaseQuantity(cartItem.id) }}>+</button>
+                                    </span>
                                 </p>
                             </div>
 
